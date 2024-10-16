@@ -54,32 +54,69 @@
     // Array.prototype.sort()
     // 3. Sort the inventors by birthDate, oldest to youngest
     //(EXTRA)i sorted them correctly but wanted to sort them due who lived more than the other.
-    const sorted = inventors.sort(function (a,b){
-      if ((a.passed - a.year ) > (b.passed - b.year)) {
-        return 1
-      }
-      else {
-        return -1
-      }
-    });
+    // const sorted = inventors.sort(function (a,b){
+    //   if ((a.passed - a.year ) > (b.passed - b.year)) {
+    //     return 1
+    //   }
+    //   else {
+    //     return -1
+    //   }
+    // });
+    
+    // the same using ternary operator and arrow function method.
+    const sorted = inventors.sort((a,b) => (a.passed - a.year ) > (b.passed - b.year) ? 1 : -1)
     console.table(sorted)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    const totalYears = inventors.reduce((total,live) => { 
+      return total + (live.passed - live.year);
+     },0);
+
+     // Why the result is 861 ???????????????
+
+    console.log(totalYears)
+
     // 5. Sort the inventors by years lived
+    // Did it already
+
+    const sorted2 = inventors.sort((a,b) => (a.passed - a.year ) > (b.passed - b.year) ? 1 : -1)
+    console.table(sorted2)
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
+    // const category = document.querySelector('.mw-category');
+    // const links = Array.from(category.querySelectorAll('a'));
+    // const de = links
+    // .map(link => link.textContent)
+    // .filter(name => name.includes('de'))
+
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+      const alpha = people.sort((lastOne, nextOne) => {
+      const [aLast, aFirst] = lastOne.split(', ');
+      const [bLast, bFirst] = nextOne.split(', ');
+      return aLast > bLast ? 1 : -1;
+    });
+    console.log(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const reduced = data.reduce(function (obj, item ) {
+      if (!obj[item]) {
+        obj[item] =0;
+      } 
+      obj[item]++
+      return obj;
+    },{})
+    console.log(reduced)
+    ///fewwwwwwwwwww.
   </script>
 </body>
 </html>
